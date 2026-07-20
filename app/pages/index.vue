@@ -10,7 +10,7 @@ const toast = useToast()
 </script>
 
 <template>
-  <UContainer class="my-5">
+  <UContainer class="py-5">
     <UCard>
       <UCardHeader>
         <UCardTitle>Nuxt 4 + Vue 3 + TailwindCSS</UCardTitle>
