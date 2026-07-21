@@ -7,6 +7,7 @@
       <UCardBody>
         <p class="text-gray-700 text-base">
           This is the about page of the Nuxt 4 project.
+          ADD TEXT
         </p>
       </UCardBody>
     </UCard>
