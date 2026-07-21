@@ -9,3 +9,4 @@ discovery:
   # This syntax resolves the 404 error by passing the bypass token to all asset requests
   request-headers:
     x-vercel-protection-bypass: "${VERCEL_AUTOMATION_BYPASS_SECRET}"
+    x-vercel-set-bypass-cookie: "true"
