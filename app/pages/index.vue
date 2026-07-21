@@ -19,8 +19,10 @@ const toast = useToast()
         <p class="text-gray-700 text-base">
           This is a Nuxt 4 project using Vue 3 and TailwindCSS. OKKKKQQQ
         </p>
-        <UButton @click="clickHandler">Click me</UButton>
-        <UButton color="primary" @click="clickHandler">Click Me Too</UButton>
+        <div class="flex flex-col gap-3">
+          <UButton @click="clickHandler">Click me</UButton>
+          <UButton color="primary" @click="clickHandler">Click Me Too</UButton>
+        </div>
       </UCardBody>
     </UCard>
   </UContainer>
