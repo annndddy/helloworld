@@ -1,0 +1,32 @@
+name: Percy Visual Review
+
+on: [deployment_status]
+
+jobs:
+  visual-review:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment != 'production'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'yarn' # Optimized caching for Yarn lockfiles
+
+      - name: Install Dependencies
+        # --frozen-lockfile ensures CI fails if yarn.lock is out of sync
+        run: yarn install 
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install chromium --with-deps
+
+      - name: Run Percy Visual Test
+        # yarn exec wraps the executable commands correctly
+        run: yarn percy exec -- yarn playwright test percy-snapshots.spec.ts
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
