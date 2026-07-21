@@ -1,0 +1,7 @@
+version: 2
+discovery:
+  allowed-hostnames:
+    - '*.vercel.app'
+  # Dynamically reads the environment variable from your GitHub runner
+  headers:
+    x-vercel-protection-bypass: <%= ENV['VERCEL_AUTOMATION_BYPASS_SECRET'] %>

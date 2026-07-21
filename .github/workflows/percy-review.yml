@@ -25,12 +25,8 @@ jobs:
         run: yarn playwright install chromium --with-deps
 
       - name: Run Percy Visual Test
-        # We tell Percy to pass the bypass header when fetching assets from Vercel
-        run: |
-          yarn percy exec \
-            --allowed-hostname "*.vercel.app" \
-            -h "x-vercel-protection-bypass=${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}" \
-            -- yarn playwright test percy-snapshots.spec.ts
+        # yarn exec wraps the executable commands correctly
+        run: yarn percy exec -- yarn playwright test percy-snapshots.spec.ts
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
