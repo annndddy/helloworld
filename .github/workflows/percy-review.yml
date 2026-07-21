@@ -24,7 +24,7 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install chromium --with-deps
 
-            - name: Run Percy Visual Test
+      - name: Run Percy Visual Test
         # We tell Percy to pass the bypass header when fetching assets from Vercel
         run: |
           yarn percy exec \
